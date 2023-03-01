@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>مخزن فستقة</title>
+    <style>
+      * {
+        font-family: Tahoma;
+        direction: rtl;
+        font-size: 10px;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 5px;
+      }
+      h1 {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 14px;
+      }
+      h3 {
+        font-size: 12px;
+      }
+
+      table.GeneratedTable {
+        font-size: large;
+        width: 100%;
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border-width: 2px;
+        border-color: #000000;
+        border-style: solid;
+        color: #000000;
+      }
+
+      table.GeneratedTable td,
+      table.GeneratedTable th {
+        border-width: 2px;
+        border-color: #000000;
+        border-style: solid;
+        padding: 3px;
+      }
+
+      table.GeneratedTable thead {
+        background-color: #d7d5d0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>مخزن فستقة</h1>
+      <h3>هاتف:07707972990 - العنوان: حي النصر الطريق السياحي قرب مول شاكر</h3>
+    </div>
+    <div style="margin-bottom: 20px">
+      <div style="float: left">
+        <span>رقم الطلبية: </span>
+        <span><strong>{{order.id}}</strong></span>
+      </div>
+      <h4 style="margin: 0 0 5px 0">
+        <span>اسم الوكيل:</span>
+        <span>{{order.customer.name}}</span>
+      </h4>
+      <h3 style="background-color: #d7d5d0; text-align: center; padding: 5px">
+        طلبية
+      </h3>
+    </div>
+
+    <table class="GeneratedTable">
+      <thead>
+        <tr>
+          <th>ت</th>
+          <th>المادة</th>
+          <th>الكمية</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each orderItem}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.product.name}}</td>
+          <td>{{this.quantity}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+          <td colspan="2" style="text-align: left; padding-left: 20px">
+            مجموع الكراتين
+          </td>
+          <td style="text-align: center"><strong>{{itemsCount}}</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <p>عنوان التوصيل: {{order.address}}</p>
+    <p>هاتف التوصيل: {{order.phoneNumber}}</p>
+    <p>الملاحظات: {{order.note}}</p>
+  </body>
+</html>

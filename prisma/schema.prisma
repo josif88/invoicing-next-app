@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model customer {
+  id            Int       @id @default(autoincrement())
+  phone         String    @unique
+  name          String
+  location      String?
+  note          String?
+  password      String
+  adminId       Int
+  initialDebt   Float     @default(0)
+  active        Boolean   @default(true)
+  businessName  String?
+  referenceCode String?
+  addedBy       admin     @relation(fields: [adminId], references: [id])
+  invoice       invoice[]
+  order         order[]
+  payments      payment[]
+}
+
+model admin {
+  id                 Int                  @id @default(autoincrement())
+  phone              String               @unique
+  name               String
+  role               role                 @default(EDITOR)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @default(now())
+  customer           customer[]
+  expense            expense[]
+  invoice            invoice[]
+  notificationTokens notificationTokens[]
+  otp                otp[]
+  payment            payment[]
+}
+
+model otp {
+  id        Int      @id @default(autoincrement())
+  password  String
+  adminId   Int
+  createdAt DateTime @default(now())
+  tries     Int      @default(0)
+  reference String
+  admin     admin    @relation(fields: [adminId], references: [id])
+}
+
+model category {
+  id        Int       @id @default(autoincrement())
+  name      String
+  createdAt DateTime  @default(now())
+  active    Boolean   @default(true)
+  products  product[]
+}
+
+model product {
+  id          Int           @id @default(autoincrement())
+  name        String
+  shortcode   Int?
+  barcode     String?
+  mUnit       mUnit         @default(COUNT)
+  image       String?
+  active      Boolean       @default(true)
+  createdAt   DateTime      @default(now())
+  categoryId  Int?
+  price       Float         @default(0)
+  desc        String?
+  category    category?     @relation(fields: [categoryId], references: [id])
+  inventory   inventory[]
+  invoiceItem invoiceItem[]
+  orderItem   orderItem[]
+}
+
+model inventory {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  quantity  Int
+  price     Float?
+  note      String?
+  createdAt DateTime @default(now())
+  active    Boolean  @default(true)
+  product   product  @relation(fields: [productId], references: [id])
+}
+
+model invoice {
+  id          Int           @id @default(autoincrement())
+  customerId  Int?
+  adminId     Int
+  active      Boolean       @default(true)
+  onCredit    Boolean
+  createdAt   DateTime      @default(now())
+  total       Float         @default(0)
+  isReturn    Boolean       @default(false)
+  note        String?
+  createdBy   admin         @relation(fields: [adminId], references: [id])
+  customer    customer?     @relation(fields: [customerId], references: [id])
+  invoiceItem invoiceItem[]
+  order       order[]
+  payments    payment[]
+}
+
+model invoiceItem {
+  id        Int     @id @default(autoincrement())
+  invoiceId Int
+  productId Int
+  price     Float   @default(0)
+  quantity  Int
+  subTotal  Float   @default(0)
+  discount  Float   @default(0)
+  invoic    invoice @relation(fields: [invoiceId], references: [id])
+  product   product @relation(fields: [productId], references: [id])
+}
+
+model payment {
+  id         Int      @id @default(autoincrement())
+  customerId Int
+  invoiceId  Int?
+  value      Float
+  note       String?
+  createdAt  DateTime @default(now())
+  adminId    Int
+  active     Boolean  @default(true)
+  createdBy  admin    @relation(fields: [adminId], references: [id])
+  customer   customer @relation(fields: [customerId], references: [id])
+  invoice    invoice? @relation(fields: [invoiceId], references: [id])
+}
+
+model order {
+  id          Int         @id @default(autoincrement())
+  customerId  Int?
+  address     String?
+  location    String?
+  phoneNumber String?
+  note        String?
+  createdAt   DateTime    @default(now())
+  active      Boolean     @default(true)
+  done        Boolean     @default(false)
+  invoiceId   Int?
+  customer    customer?   @relation(fields: [customerId], references: [id])
+  invoice     invoice?    @relation(fields: [invoiceId], references: [id])
+  orderItem   orderItem[]
+}
+
+model orderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int     @default(0)
+  order     order   @relation(fields: [orderId], references: [id])
+  product   product @relation(fields: [productId], references: [id])
+}
+
+model notificationTokens {
+  id                Int      @id @default(autoincrement())
+  adminId           Int
+  notificationToken String   @unique
+  createdAt         DateTime @default(now())
+  device            String?
+  admin             admin    @relation(fields: [adminId], references: [id])
+}
+
+model expense {
+  id        Int      @id @default(autoincrement())
+  adminId   Int
+  issuedTo  String?
+  category  String?
+  value     Float
+  note      String?
+  createdAt DateTime @default(now())
+  active    Boolean  @default(true)
+  admin     admin    @relation(fields: [adminId], references: [id])
+}
+
+enum role {
+  ADMIN
+  EDITOR
+}
+
+enum mUnit {
+  KG
+  COUNT
+}

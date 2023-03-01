@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>مخزن فستقة</title>
+    <style>
+      * {
+        font-family: Tahoma;
+        direction: rtl;
+        font-size: 10px;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 5px;
+      }
+      h1 {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 14px;
+      }
+      h3 {
+        font-size: 12px;
+      }
+
+      table.GeneratedTable {
+        font-size: large;
+        width: 100%;
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border-width: 2px;
+        border-color: #000000;
+        border-style: solid;
+        color: #000000;
+      }
+
+      table.GeneratedTable td,
+      table.GeneratedTable th {
+        border-width: 2px;
+        border-color: #000000;
+        border-style: solid;
+        padding: 3px;
+      }
+
+      table.GeneratedTable thead {
+        background-color: #d7d5d0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>مخزن فستقة</h1>
+      <h3>هاتف:07707972990 - العنوان: حي النصر الطريق السياحي قرب مول شاكر</h3>
+    </div>
+
+    <div style="height: 80px; border: 1px solid black; padding: 5px">
+      <h3 style="float: right">اسم الوكيل: {{invoice.customer.name}}</h3>
+      <div style="float: left">
+        <p>رقم الفاتورة: <strong>{{invoice.id}}</strong></p>
+        <p>تاريخها: <strong>{{date}}</strong></p>
+        <p>الوقت: <strong>{{time}}</strong></p>
+      </div>
+    </div>
+
+    <div
+      style="
+        background-color: #d7d5d0;
+        text-align: center;
+        padding: 5px;
+        border: 1px solid black;
+        margin: 10px 0;
+      "
+    >
+      <h3>{{invoiceType}}</h3>
+    </div>
+
+    <table class="GeneratedTable">
+      <thead>
+        <tr>
+          <th>ت</th>
+          <th>المادة</th>
+          <th>الكمية</th>
+          <th>السعر</th>
+          <th>المجموع</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each invoiceItem}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.product.name}}</td>
+          <td>{{this.quantity}}</td>
+          <td>{{this.price}}</td>
+          <td>{{this.subTotal}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+          <td colspan="2" style="text-align: left; padding-left: 20px">
+            مجموع الكراتين
+          </td>
+          <td style="text-align: center"><strong>{{itemsCount}}</strong></td>
+          <td style="background-color: #d7d5d0; text-align: center">
+            <strong>المجموع</strong>
+          </td>
+          <td>
+            <strong style="text-align: center">{{total}} دينار</strong>
+          </td>
+        </tr>
+        <td
+          style="font-weight: bold; text-align: left; padding-left: 20px"
+          colspan="5"
+        >
+          {{writtenTotal}} دينار
+        </td>
+      </tbody>
+
+      <table class="GeneratedTable" style="margin-top: 20px">
+        <tr>
+          <td>الرصيد السابق: {{oldDebt}}</td>
+          <td>مجموع القائمة: {{total}}</td>
+          <td>الرصيد الحالي: {{customerDebt}}</td>
+        </tr>
+      </table>
+    </table>
+    <p>الملاحظات:</p>
+    <p>{{invoice.note}}</p>
+  </body>
+</html>

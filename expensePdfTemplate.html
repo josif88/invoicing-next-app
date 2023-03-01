@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>مخزن فستقة</title>
+    <style>
+      * {
+        font-family: Tahoma;
+        direction: rtl;
+        font-size: 10px;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 5px;
+      }
+      h1 {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 14px;
+      }
+      h3 {
+        font-size: 12px;
+      }
+
+      .border {
+        border: #000000 1px solid;
+        padding: 3px;
+      }
+
+      table.GeneratedTable {
+        font-size: large;
+        width: 100%;
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border-width: 2px;
+        border-color: #000000;
+        border-style: solid;
+        color: #000000;
+      }
+
+      td,
+      th {
+        border-width: 2px;
+        border-color: #000000;
+        border-style: solid;
+        padding: 3px;
+      }
+
+      .background {
+        background-color: #d7d5d0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>مخزن فستقة</h1>
+      <div style="display: inline-block; width: 100%">
+        <h4 style="float: right">
+          العنوان: حي النصر الطريق السياحي قرب مول شاكر
+        </h4>
+        <h4 style="float: left">هاتف: 07718508592</h4>
+      </div>
+      <div
+        style="
+          background-color: #d7d5d0;
+          text-align: center;
+          padding: 5px;
+          margin: 10px 0;
+        "
+      >
+        <h3>سند صرف</h3>
+      </div>
+    </header>
+    <div>
+      <table style="font-size: large; float: right">
+        <tr>
+          <td class="border background">رقم المستند:</td>
+          <td class="border">{{expense.id}}</td>
+        </tr>
+        <tr>
+          <td class="border background">التاريخ:</td>
+          <td class="border">{{date}}</td>
+        </tr>
+        <tr>
+          <td class="border background">باب الصرف:</td>
+          <td class="border">{{expense.category}}</td>
+        </tr>
+      </table>
+      <table style="font-size: large; float: left">
+        <tr>
+          <th class="border background">المبلغ</th>
+          <th class="border">{{value}}</th>
+        </tr>
+      </table>
+    </div>
+    <br />
+    <br />
+    <table style="font-size: large" width="100%">
+      <tr>
+        <th class="border" style="width: 25%">يصرف للسيد</th>
+        <th class="border" style="width: 75%">{{expense.issuedTo}}</th>
+      </tr>
+      <tr>
+        <th class="border">مبلغ وقدره</th>
+        <th class="border">{{value}} دينار</th>
+      </tr>
+      <tr>
+        <th class="border">كتابة</th>
+        <th class="border">{{writtenNumber}} دينار</th>
+      </tr>
+
+      <tr>
+        <th class="border">وذلك عن</th>
+        <th class="border">{{expense.note}}</th>
+      </tr>
+    </table>
+
+    <div style="float: left; margin-top: 2em">
+      <p>تم تحرير المستند بواسطة</p>
+      <strong> {{expense.admin.name}}</strong>
+    </div>
+  </body>
+</html>

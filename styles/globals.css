@@ -1,0 +1,191 @@
+@font-face {
+  font-family: "Gulf";
+  src: url("/fonts/gulf.ttf");
+}
+
+@import url("/fonts/Roboto-Regular.ttf");
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  line-height: initial;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.rtl {
+  direction: rtl;
+  font-family: Gulf, sans-serif;
+  font-weight: normal;
+  line-height: initial;
+}
+
+/* scroll bar */
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 132, 255);
+}
+/* end of scroll bar styling */
+
+/* input number styling */
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+} */
+
+/* Firefox */
+/* input[type="number"] {
+  -moz-appearance: textfield;
+  outline: none;
+}
+
+input[type="number"]:focus {
+  outline: none;
+} */
+
+/* end of input number styling */
+
+.container {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 0px 25px;
+}
+
+.padding {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.margin {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.align-items {
+  align-items: center;
+}
+
+.spacing {
+  gap: 5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+}
+.grid4col {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px;
+}
+
+/* centering */
+.relative {
+  position: relative;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* centering */
+
+.center-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-col {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 8px;
+}
+
+.gap {
+  gap: 8px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff91;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.page {
+  size: auto;
+  padding: 10mm;
+}
+
+.table-col-title {
+  background: #fafafad7;
+  border: 1px solid #000;
+  padding-inline-start: 5px;
+}
+
+.table-cell {
+  border: 1px solid #000;
+  padding-inline-start: 5px;
+}

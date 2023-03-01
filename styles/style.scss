@@ -1,0 +1,148 @@
+.translate-controller {
+  h3 {
+    font-size: 2vw;
+  }
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  min-width: 350px;
+  max-width: 500px;
+
+  .translation-text {
+    background: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 2vw;
+  }
+
+  .select-language {
+    margin: 0 10px;
+    min-width: 125px;
+  }
+
+  .translation-item {
+    background: rgb(250, 249, 249);
+    border-radius: 15px;
+    padding: 18px;
+    border: 1px solid #ccc;
+    height: fit-content;
+    .flex-vertical {
+      display: flex;
+      flex-direction: column;
+      min-height: 70px;
+    }
+  }
+}
+header {
+  padding: 30px 0;
+  position: sticky;
+  height: 50px;
+  top: 0;
+  background: #fff;
+  width: 100%;
+  z-index: 99;
+}
+.saved-phrases {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding-bottom: 50px;
+
+  .saved-phrase-item {
+    // background-color: #5d8874c7;
+    border: #427c5e 1px solid;
+    padding: 10px 20px;
+    height: fit-content;
+    border-radius: 1em;
+    flex: auto;
+    margin: 10px;
+  }
+}
+
+.reminder-item {
+  padding: 8px;
+  background: #f5f5f5;
+  margin: 8px 0;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer {
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  height: 40px;
+  padding: 30px;
+  bottom: 0;
+}
+
+.phrase-not-active {
+  background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    padding: 10px;
+  }
+
+  .grid {
+    grid-template-columns: auto auto;
+  }
+
+  .grid4col {
+    grid-template-columns: auto auto;
+  }
+
+  .translate-controller {
+    gap: 5px;
+    min-width: 400px;
+    h3 {
+      font-size: 4vw;
+    }
+    .translation-text {
+      font-size: 4vh;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .grid {
+    grid-template-columns: auto;
+  }
+
+  .grid4col {
+    grid-template-columns: auto;
+  }
+  .translate-controller {
+    gap: 5px;
+    min-width: 310px;
+
+    .translation-text {
+      background: rgb(255, 255, 255);
+      border-radius: 15px;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    .translation-item {
+      background: rgb(250, 249, 249);
+      border-radius: 15px;
+      padding: 9px;
+      border: 1px solid #ccc;
+      height: fit-content;
+    }
+  }
+}
+
+.image_button {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 1rem;
+  background-color: #f3f3f3;
+}
